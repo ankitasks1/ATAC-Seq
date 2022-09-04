@@ -480,3 +480,21 @@ dba.plotVolcano(dbObj)
 hmap <- colorRampPalette(c("red", "black", "green"))(n = 13)
 
 readscores <- dba.plotHeatmap(dbObj, contrast=1, correlations=FALSE, scale="row", colScheme = hmap)
+
+# Step 12: Nucleosome Free Region identification
+
+#Use ChIPseeker
+
+library(ChIPseeker)
+
+MacsCalls_chr20_filteredAnno <- annotatePeak(MacsCalls_chr20_filtered, TxDb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+plotAnnoPie(MacsCalls_chr20_filteredAnno)
+
+#Retrieve NFR (subset our peaks/nuc free regions to those only landing in TSS regions (+/- 500))
+
+MacsGranges_Anno <- as.GRanges(MacsCalls_chr20_filteredAnno)
+
+TSS_MacsGranges_Anno <- MacsGranges_Anno[abs(MacsGranges_Anno$distanceToTSS) <  500]
+
+TSS_MacsGranges_Anno
+
