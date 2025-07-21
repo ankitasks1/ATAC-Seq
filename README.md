@@ -422,8 +422,12 @@ dbObj <- dba.normalize(dbObj)
 #Establish contrast
 
 dbObj <- dba.contrast(dbObj, categories=DBA_FACTOR, minMembers = 2)
+
+
 or
+
 dbObj <- dba.contrast(dbObj,design="~Condition")
+
 #Performing the differential enrichment analysis
 
 dbObj <- dba.analyze(dbObj, method=DBA_ALL_METHODS)
