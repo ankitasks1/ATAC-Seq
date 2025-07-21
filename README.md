@@ -426,7 +426,7 @@ dbObj <- dba.contrast(dbObj, categories=DBA_FACTOR, minMembers = 2)
 
 or
 
-dbObj <- dba.contrast(dbObj,design="~Condition")
+dbObj <- dba.contrast(dbObj,contrast=c("Condition","mut","wt"))
 
 #Performing the differential enrichment analysis
 
